@@ -1,0 +1,78 @@
+<!-- Add overlay markup here.
+    NOTE: If you are solely extending a component and you don't need this then just delete the file. -->
+ 
+    <html>
+ <div id="loginContainer">
+    <h1 style="margin: 0 auto; color: green; text-align: center;">Log In</h1>
+    <div class="form-popup" id="myForm">
+        
+        <form class="form-container" name="login" id="login"  method="POST">
+         
+      
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Enter username" name="uname" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="pass" required>
+      
+          <button type="submit" class="btn">Login</button>
+          <h2 id="message" >Invalid username or password</h2>
+        
+        </form>
+      </div>
+ </div>
+
+ <script>
+	// this is the id of the form
+
+	$("#login").submit(function(e) {
+
+
+		e.preventDefault(); // avoid to execute the actual submit of the form.
+
+		var form = $(this);
+
+		var url = "/bin/formValue";
+
+
+		$.ajax({
+
+			type : "POST",
+
+			url : url,
+
+			data : form.serialize(), // serializes the form's elements.
+
+
+			success : function(data, textStatus, jqXHR) {
+				//write your logic that you need to perform on sucess
+				var mess=document.getElementById("message")
+                if (data.status=="200") {
+
+                    
+                    mess.style.display="block"
+                    mess.style.color="green"
+                    mess.innerHTML="Login success!!"
+                    setTimeout(() => {
+                        window.open("http://localhost:4502/editor.html/content/ecart/en/home.html")
+                    }, 1000);
+                   
+                }else{
+                    mess.style.display="block"
+                    mess.style.color="red"
+                    mess.innerHTML="Invalid username or password"
+                }
+				
+				return false;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				//write your logic that you need to perform on error
+                alert("ERROR")
+			}
+
+		});
+
+	});
+</script>
+
+</html>
