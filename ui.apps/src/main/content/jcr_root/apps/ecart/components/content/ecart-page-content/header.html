@@ -1,6 +1,8 @@
 <meta data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientlib.all @ categories='ecart.base'}" data-sly-unwrap></meta>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+
 
 
 <div class="topnav">
@@ -8,4 +10,8 @@
 	<a href="#news">News</a>
 	<a href="#contact">Contact</a>
 	<a href="#about">About</a>
+	<i id="loginIcon" class="fa fa-user" aria-hidden="true" style="font-size: 40px;color: blue; float: right;margin-right: 10px;" onclick="onClickLoginIcon()"></i>
+	
   </div>
+
+<div  id="loginPopup" data-sly-resource="${'login' @ resourceType='ecart/components/content/login'}"></div>
